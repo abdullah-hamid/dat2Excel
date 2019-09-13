@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QFileDialog, QLabel
 import pandas as pd
 import os
 
@@ -10,10 +10,18 @@ class StartWindow(QMainWindow):
         self.button_folder_select = QPushButton('1. Select Folder...', self.central_widget)
         self.button_output_loc = QPushButton('2. Save As...', self.central_widget)
         self.button_convert = QPushButton('3. Convert', self.central_widget)
+        self.l1 = QLabel("Select Parent Directory", self.central_widget)
+        self.l2 = QLabel("Make sure to .xlsx extension to save name!!!", self.central_widget)
+        self.l2.setStyleSheet('color: red')
+        self.l3 = QLabel("Convert to XLSX file.", self.central_widget)
+
 
         self.layout = QVBoxLayout(self.central_widget)
+        self.layout.addWidget(self.l1)
         self.layout.addWidget(self.button_folder_select)
+        self.layout.addWidget(self.l2)
         self.layout.addWidget(self.button_output_loc)
+        self.layout.addWidget(self.l3)
         self.layout.addWidget(self.button_convert)
 
         self.button_output_loc.setDisabled(True)
@@ -60,11 +68,10 @@ class StartWindow(QMainWindow):
                         df.to_excel(w, sheet_name="%s" % self.dat_file_names[i], index=False)
                         i += 1
         w.save()
+        
+        self.button_convert.setStyleSheet("color: green")
         self.button_convert.setDisabled(True)
-
-
-
-
+        self.button_convert = QPushButton('3. ', self.central_widget) #Doesn't change button text
 
 
 
