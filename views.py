@@ -39,7 +39,7 @@ class StartWindow(QMainWindow):
 
     def convert_dat(self):
         i = 0
-        w = pd.ExcelWriter('C:/Users/abh85/Desktop/Hilti Shearwall 2019/Hilti Shear Wall.xlsx')
+        w = pd.ExcelWriter(self.button_output_loc.saveXLSX)
         for root, dirs, files in os.walk(self.button_folder_select.folder_loc):
             for name in dirs:
                 self.dat_file_names.append(name)
