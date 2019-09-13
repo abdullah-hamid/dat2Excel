@@ -30,12 +30,13 @@ class StartWindow(QMainWindow):
         self.button_folder_select.folder_loc = QFileDialog.getExistingDirectory(self.central_widget,
                                                                                 "Select Parent Folder")
         self.button_output_loc.setDisabled(False)
-        print(self.button_folder_select.folder_loc)
+        self.button_folder_select.setDisabled(True)
+       
 
     def file_save_loc(self):
         self.button_output_loc.saveXLSX, filter = QFileDialog.getSaveFileName(self, "Output File")
         self.button_convert.setDisabled(False)
-        print(self.button_output_loc.saveXLSX)
+        self.button_output_loc.setDisabled(True)
 
 #Save location works however only if .xlsx extension is explicitly stated.
 
@@ -59,6 +60,8 @@ class StartWindow(QMainWindow):
                         df.to_excel(w, sheet_name="%s" % self.dat_file_names[i], index=False)
                         i += 1
         w.save()
+        self.button_convert.setDisabled(True)
+
 
 
 
