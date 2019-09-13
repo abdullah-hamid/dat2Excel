@@ -37,6 +37,8 @@ class StartWindow(QMainWindow):
         self.button_convert.setDisabled(False)
         print(self.button_output_loc.saveXLSX)
 
+#Save location works however only if .xlsx extension is explicitly stated.
+
     def convert_dat(self):
         i = 0
         w = pd.ExcelWriter(self.button_output_loc.saveXLSX)
